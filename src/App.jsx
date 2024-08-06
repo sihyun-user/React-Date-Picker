@@ -1,18 +1,9 @@
 import { useEffect, useState } from 'react';
 import { format, eachDayOfInterval, startOfMonth, endOfMonth, isToday, getDay, addMonths, subMonths } from 'date-fns';
+import DateItem from './DateItem';
+import NotAllowedDateItem from './NotAllowedDateItem';
 
 const getCurrentYearMonth = (year, month) => format(new Date(year, month - 1), 'yyyy年MM月');
-
-const renderDay = (day) => {
-  return (
-    <div
-      className="date-not-current"
-      key={format(day, 'yyyy-MM-dd')}
-    >
-      {format(day, 'd')}
-    </div>
-  );
-}
 
 function App() {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -28,11 +19,6 @@ function App() {
     } else if (date >= startDate) {
       setEndDate(date);
     }
-  };
-
-  const isDateRange = (date) => {
-    if (!startDate || !endDate) return false;
-    return date >= startDate && date <= endDate;
   };
 
   const handleMonthChange = (type) => {
@@ -84,21 +70,9 @@ function App() {
           <div className="month-select right"  onClick={() => handleMonthChange('next')}></div>
         </div>
         <div className='main'>
-          {prevMonthDays.map((day) => renderDay(day))}
-          {daysInMonth.map((day) => {
-            const rangeStyle = isDateRange(day) ? 'active' : '';
-            const todayStyle = isToday(day) ? 'today' : '';
-            return (
-              <div 
-                className={`date ${rangeStyle} ${todayStyle}`}
-                key={format(day, 'yyyy-MM-dd')}
-                onClick={() => handleDateRange(day)}
-                >
-                {format(day, 'd')}
-              </div>
-            );
-          })}
-          {nextMonthDays.map((day) => renderDay(day))}
+          {prevMonthDays.map((date) => <NotAllowedDateItem key={date} date={date} />)}
+          {daysInMonth.map((date) => <DateItem key={date} date={date} startDate={startDate} endDate={endDate} onClick={handleDateRange} />)}
+          {nextMonthDays.map((date) => <NotAllowedDateItem key={date} date={date} />)}
         </div>
       </div>
     </div>
