@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Roboto+Condensed:wght@400;700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Quicksand", sans-serif;
+  line-height: 1.6;
+  color: #333333;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.header {
+  width: 350px;
+  height: 44px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.month-select {
+  width: 44px;
+  height: 44px;
+  background-color: #FFFFFF;
+  cursor: pointer;
+  line-height: 44px;
+  text-align: center;
+}
+
+.month-select::before {
+  content: "";
+  line-height: 44px;
+  display: block;
+  border: solid black;
+  border-width: 0px 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.month-select.right::before {
+  transform: rotate(-45deg);
+}
+
+.month-select.left::before {
+  transform: rotate(135deg);
+}
+
+.month-select:hover {
+  background-color: #E6E6E6;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.date {
+  width: 50px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFFFFF;
+  cursor: pointer;
+}
+
+.date.today {
+  background-color: #FFFF76;
+}
+
+.date.active {
+  color: #FFFFFF;
+  background-color: #006EDC;
+}
+
+.date:hover {
+  color: #333333;
+  background-color: #E6E6E6 !important;
+}
+
+.date-not-current {
+  width: 50px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #757575;
+  cursor: not-allowed;
+}
